@@ -17,9 +17,7 @@ def hello():
     """
     Hello method at / API endpoint to greet user and return number of visit
     """
-    redis.incr('hits')
-    hits = int(redis.get('hits'))
-    return f"Hits: {hits}"
+    return "Hello"
 
 @app.route('/health')
 def health():
