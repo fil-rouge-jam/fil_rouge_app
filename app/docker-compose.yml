@@ -2,11 +2,11 @@ version: '2'
 
 services:
   front:
-    image: mehhlol/front
+    image: mej:latest
     build:
-      context: ./app
+      context: .
       dockerfile: Dockerfile
-    container_name: app
+    container_name: app2
     command: gunicorn -w 1 app:app -b 0.0.0.0:5000
     depends_on:
       - redis
