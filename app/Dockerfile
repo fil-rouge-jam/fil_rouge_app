@@ -1,4 +1,5 @@
 FROM python:alpine3.8
+
 ADD . /app
 WORKDIR /app
 RUN pip install -r app/requirements.txt
