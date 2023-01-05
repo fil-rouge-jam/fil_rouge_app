@@ -1,6 +1,6 @@
 name: Build and deploy an app to AKS
 
-on: ["push"]
+on: push
 
 env:
   AZURE_CONTAINER_REGISTRY: "your-azure-container-registry"
