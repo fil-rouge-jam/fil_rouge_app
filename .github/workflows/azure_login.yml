@@ -15,11 +15,6 @@ jobs:
       contents: read
       id-token: write
     runs-on: ubuntu-latest
-    env:
-      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
     steps:
       # Checks out the repository this file is in
       - uses: actions/checkout@v3
@@ -28,6 +23,6 @@ jobs:
       - name: Azure login
         uses: azure/login@v1.4.6
         with:
-          client-id: ${{ env.ARM_CLIENT_ID }}
-          tenant-id: ${{ env.ARM_TENANT_ID }}
-          subscription-id: ${{ env.ARM_SUBSCRIPTION_ID }}
+          client-id: "489b82f6-5689-45cf-a9bc-db190ef81d8e"
+          tenant-id: "9865441c-e5a2-4e25-b88a-54eecbc74481"
+          subscription-id: "9cf1405c-d796-4b72-a397-25084112a2a2"
