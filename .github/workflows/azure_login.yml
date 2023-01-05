@@ -1,0 +1,56 @@
+name: Build and deploy a docker image to azure image registery
+
+on: 
+  pull_request:
+    branches: ["develop","main"]
+
+env:
+  AZURE_CONTAINER_REGISTRY: "filrougeregistry"
+  CONTAINER_NAME: "fil_rouge"
+  RESOURCE_GROUP: "fil_rouge_grp"
+  CLUSTER_NAME: "your-cluster-name"
+  DEPLOYMENT_MANIFEST_PATH: "your-deployment-manifest-path"
+  
+
+
+jobs:
+  buildImage:
+    permissions:
+      contents: read
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      # Checks out the repository this file is in
+      - uses: actions/checkout@v3
+      - name: Sets env vars for release
+        run: |
+          echo "ENVC=staged" >> $GITHUB_ENV
+        if: github.ref_name == 'develop'
+
+      # This step is run when the tag is staging-XXX
+      - name: Sets env vars for staging
+        run: |
+          echo "ENVC=develop" >> $GITHUB_ENV
+        if: github.ref_name != 'develop'
+
+      # Logs in with your Azure credentials
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Build and push image to ACR
+        run: |
+          az acr build --image ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ env.ENVC }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.RESOURCE_GROUP }} ./app
+  slackNotification:
+    name: Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_DEV_APP }}
+        SLACK_MESSAGE: 'Connection à Azure build et push de l\image sur le registery azure'
+        SLACK_TITLE: 'Azure login/ build & push de l\image'
+        SLACK_USERNAME: 'Github_Action'
+        SLACK_COLOR: ${{ job.status }}
