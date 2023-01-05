@@ -1,11 +1,13 @@
-name: Build and deploy an app to AKS
+name: Build and deploy a docker image to azure image registery
 
 on: push
+  # pull_request:
+  #  branches: ["develop"]
 
 env:
-  AZURE_CONTAINER_REGISTRY: "your-azure-container-registry"
-  CONTAINER_NAME: "your-container-name"
-  RESOURCE_GROUP: "your-resource-group"
+  AZURE_CONTAINER_REGISTRY: "filrougeregistry"
+  CONTAINER_NAME: "fil_rouge"
+  RESOURCE_GROUP: "fil_rouge_grp"
   CLUSTER_NAME: "your-cluster-name"
   DEPLOYMENT_MANIFEST_PATH: "your-deployment-manifest-path"
 
@@ -24,6 +26,9 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Build and push image to ACR
+        run: |
+          az acr build --image ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.RESOURCE_GROUP }} .
   slackNotification:
     name: Slack Notification
     runs-on: ubuntu-latest
