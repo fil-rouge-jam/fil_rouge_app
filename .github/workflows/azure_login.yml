@@ -21,7 +21,7 @@ jobs:
 
       # Logs in with your Azure credentials
       - name: Azure login
-        uses: azure/login@v1.4.6
+        uses: azure/login@v1
         with:
           client-id: "489b82f6-5689-45cf-a9bc-db190ef81d8e"
           tenant-id: "9865441c-e5a2-4e25-b88a-54eecbc74481"
