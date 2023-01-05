@@ -15,10 +15,10 @@ jobs:
       uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_DEV_APP }}
-        SLACK_MESSAGE: 'Vérification des standards Python avec Pylint'        
-        SLACK_TITLE: 'Pylint'       
+        SLACK_MESSAGE: 'Vérification des standards Python avec Pylint' 
+        SLACK_TITLE: 'Pylint'
         SLACK_USERNAME: 'Github_Action'
-        SLACK_COLOR: ${{ job.status }} 
+        SLACK_COLOR: ${{ job.status }}
   build:
     runs-on: ubuntu-latest
     strategy:

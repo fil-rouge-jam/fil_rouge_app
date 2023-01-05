@@ -10,6 +10,19 @@ env:
   DEPLOYMENT_MANIFEST_PATH: "your-deployment-manifest-path"
 
 jobs:
+  slackNotification:
+    name: Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_DEV_APP }}
+        SLACK_MESSAGE: 'Connection à Azure build et push de l\image sur le registery azure'
+        SLACK_TITLE: 'Azure login/ build & push de l\image'
+        SLACK_USERNAME: 'Github_Action'
+        SLACK_COLOR: ${{ job.status }}
   buildImage:
     permissions:
       contents: read
