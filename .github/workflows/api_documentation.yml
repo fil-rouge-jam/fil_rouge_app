@@ -6,8 +6,8 @@ jobs:
   generate-openapi-spec:
     runs-on: windows-latest
     steps:
-  deploy:
-    needs: generate-openapi-spec
+      deploy:
+        needs: generate-openapi-spec
     runs-on: ubuntu-latest
     steps:
       - name: Download openapi.json
