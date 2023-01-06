@@ -1,3 +1,8 @@
+"""
+    FITEC STUDENT FINAL PROJECT
+    API PYTHON USING FLASK
+    BY : Abdel, Julien, Mehdi
+"""
 import os
 from flask import Flask
 from redis import Redis
