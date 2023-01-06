@@ -5,20 +5,6 @@ on:
      branches: ["develop"]
 
 jobs:
-  slackNotification:
-    name: Slack Notification
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Slack Notification
-      uses: rtCamp/action-slack-notify@v2
-      env:
-        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_DEV_APP }}
-        SLACK_MESSAGE: 'Lancement des tests unitaires'        
-        SLACK_TITLE: 'Pytest'       
-        SLACK_USERNAME: 'Github_Action'
-        SLACK_COLOR: ${{ job.status }} 
-
   build:
     runs-on: ubuntu-latest
     strategy:
@@ -37,3 +23,15 @@ jobs:
     - name: Running unit tests
       run: |
         pytest -s
+    - name: Slack Notification
+      if: always()
+      uses: rtCamp/action-slack-notify@v2
+      with:
+        status: ${{ job.status }}
+        notify_when: 'failure'
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_DEV_APP }}
+        SLACK_MESSAGE: 'Lancement des tests unitaires'        
+        SLACK_TITLE: 'Pytest'       
+        SLACK_USERNAME: 'Github_Action'
+        SLACK_COLOR: ${{ job.status }} 
