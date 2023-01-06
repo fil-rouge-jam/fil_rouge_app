@@ -2,7 +2,7 @@ name: Build and deploy a docker image to azure image registery
 
 on: 
   pull_request:
-    branches: ["main"]
+    branches: ["develop"]
 
 env:
   AZURE_CONTAINER_REGISTRY: "filrougeregistry"
@@ -10,8 +10,6 @@ env:
   RESOURCE_GROUP: "fil_rouge_grp"
   CLUSTER_NAME: "your-cluster-name"
   DEPLOYMENT_MANIFEST_PATH: "your-deployment-manifest-path"
-  
-
 
 jobs:
   buildImage:
@@ -27,7 +25,7 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Build and push image to ACR
         run: |
-          az acr build --image ${{ secrets.AZURE_CONTAINER_REGISTERY_PROD }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.RESOURCE_GROUP }} ./app
+          az acr build --image ${{ secrets.AZURE_CONTAINER_REGISTERY_DEV }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.RESOURCE_GROUP }} ./app
       - name: Slack Notification
         if: always()
         uses: rtCamp/action-slack-notify@v2
