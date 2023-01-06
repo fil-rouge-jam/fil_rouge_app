@@ -4,7 +4,7 @@ on: push
 
 jobs:
   generate-openapi-spec:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Generate Swagger UI
         uses: Legion2/swagger-ui-action@v1
