@@ -26,7 +26,11 @@ jobs:
       run: |
         pylint $(git ls-files '*.py')
     - name: Slack Notification
+      if: always()
       uses: rtCamp/action-slack-notify@v2
+      with:
+      status: ${{ job.status }}
+      notify_when: 'failure'
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_DEV_APP }}
         SLACK_MESSAGE: 'Vérification des standards Python avec Pylint' 
