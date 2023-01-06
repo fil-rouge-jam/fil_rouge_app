@@ -42,7 +42,11 @@ jobs:
         run: |
           az acr build --image ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ env.ENVC }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.RESOURCE_GROUP }} ./app
       - name: Slack Notification
+        if: always()
         uses: rtCamp/action-slack-notify@v2
+        with:
+          status: ${{ job.status }}
+          notify_when: 'failure'
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_DEV_APP }}
           SLACK_MESSAGE: 'Connection à Azure build et push de l\image sur le registery azure'
