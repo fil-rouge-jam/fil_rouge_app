@@ -6,10 +6,6 @@ jobs:
   generate-openapi-spec:
     runs-on: windows-latest
     steps:
-      - name: Download openapi.json
-        uses: actions/download-artifact@v3
-        with:
-          name: spec-file
       - name: Generate Swagger UI
         uses: Legion2/swagger-ui-action@v1
         with:
