@@ -2,7 +2,7 @@ version: '2'
 
 services:
   front:
-    image: mej:latest
+    image: filrougeregistry.azurecr.io:develop
     build:
       context: .
       dockerfile: Dockerfile
