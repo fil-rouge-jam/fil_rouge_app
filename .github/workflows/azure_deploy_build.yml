@@ -55,8 +55,8 @@ jobs:
   deploy:
     permissions:
       actions: read
-        contents: read
-        id-token: write
+      contents: read
+      id-token: write
     runs-on: ubuntu-latest
     needs: [buildImage]
     steps:
