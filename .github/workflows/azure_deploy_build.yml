@@ -8,6 +8,7 @@ env:
   AZURE_CONTAINER_REGISTRY: "filrougeregistry"
   CONTAINER_NAME: "fil_rouge"
   RESOURCE_GROUP: "fil_rouge_grp"
+  CL_RESOURCE_GROUP: "fil_rouge_grp_dev"
   CLUSTER_NAME: "fil-rouge-aks-dev"
   DEPLOYMENT_MANIFEST_PATH: ".k8s/"
 
@@ -70,7 +71,7 @@ jobs:
       - name: Get K8s context
         uses: azure/aks-set-context@v3
         with:
-          resource-group: ${{ env.RESOURCE_GROUP }}
+          resource-group: ${{ env.CL_RESOURCE_GROUP }}
           cluster-name: ${{ env.CLUSTER_NAME }}
 
       # Deploys application based on given manifest file
