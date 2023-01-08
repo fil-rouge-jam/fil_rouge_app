@@ -28,7 +28,7 @@
         }
       }
     },
-    "/v2": {
+    "/health": {
       "get": {
         "operationId": "getVersionDetailsv2",
         "summary": "Show API version details",
