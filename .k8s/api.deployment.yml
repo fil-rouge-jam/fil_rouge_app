@@ -31,3 +31,8 @@ spec:
                 configMapKeyRef:
                   name: api-config
                   key: redis.host
+      strategy:
+        type: RollingUpdate
+          rollingUpdate:
+          maxUnavailable: 0
+          maxSurge: 1
