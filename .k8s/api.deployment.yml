@@ -4,13 +4,18 @@ metadata:
   name: api
 spec:
   # How many copies of each pod do we want?
-  replicas: 3
+  replicas: 0
 
   selector:
     matchLabels:
       # This must match the labels we set on the pod!
       app: api
 
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
   # This template field is a regular pod configuration
   # nested inside the deployment spec
   template:
