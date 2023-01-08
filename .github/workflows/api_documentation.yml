@@ -1,6 +1,6 @@
 name: Deploy GitHub Pages
 
-on: push
+on: [push, pull_request]
 
 jobs:
   generate-openapi-spec:
