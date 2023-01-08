@@ -1,17 +1,15 @@
 name: Build and deploy a docker image to azure image registery
 
-on: 
-  pull_request:
-    branches: ["develop","main"]
+on: push
+  # pull_request:
+  #  branches: ["develop","main"]
 
 env:
   AZURE_CONTAINER_REGISTRY: "filrougeregistry"
   CONTAINER_NAME: "fil_rouge"
   RESOURCE_GROUP: "fil_rouge_grp"
-  CLUSTER_NAME: "your-cluster-name"
-  DEPLOYMENT_MANIFEST_PATH: "your-deployment-manifest-path"
-  
-
+  CLUSTER_NAME: "fil-rouge-aks-dev"
+  DEPLOYMENT_MANIFEST_PATH: ".k8s/"
 
 jobs:
   buildImage:
@@ -88,3 +86,15 @@ jobs:
             manifests: ${{ env.DEPLOYMENT_MANIFEST_PATH }}
             images: |
               ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ env.ENC }}
+        - name: Slack Notification
+          if: always()
+          uses: rtCamp/action-slack-notify@v2
+          with:
+            status: ${{ job.status }}
+            notify_when: 'failure'
+          env:
+            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_DEV_APP }}
+            SLACK_MESSAGE: 'deploy kubernetes cluster'
+            SLACK_TITLE: 'k8s deployment'
+            SLACK_USERNAME: 'Github_Action'
+            SLACK_COLOR: ${{ job.status }}
