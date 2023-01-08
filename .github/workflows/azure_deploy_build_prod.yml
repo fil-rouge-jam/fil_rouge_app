@@ -1,4 +1,4 @@
-name: Build and deploy a docker image to azure image registery
+name: Build and deploy a docker image to azure image registery prod
 
 on:
   pull_request:
