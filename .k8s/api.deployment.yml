@@ -33,6 +33,6 @@ spec:
                   key: redis.host
       strategy:
         type: RollingUpdate
-          rollingUpdate:
+        rollingUpdate:
           maxUnavailable: 0
           maxSurge: 1
