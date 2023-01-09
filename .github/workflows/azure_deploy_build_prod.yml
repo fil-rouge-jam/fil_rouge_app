@@ -3,11 +3,13 @@ name: Build and deploy a docker image to azure image registery prod
 on:
   pull_request:
   branches: ["main"]
+  tags:
+    - "v**"
 
 env:
-  AZURE_CONTAINER_REGISTRY: "filrougeregistry"
+  AZURE_CONTAINER_REGISTRY: "FilRougeRegistryProd"
   CONTAINER_NAME: "fil_rouge"
-  RESOURCE_GROUP: "fil_rouge_grp"
+  RESOURCE_GROUP: "fil_rouge_grp_prod"
   CL_RESOURCE_GROUP: "fil_rouge_grp_prod"
   CLUSTER_NAME: "fil-rouge-aks-prod"
   DEPLOYMENT_MANIFEST_PATH: ".k8s/"
