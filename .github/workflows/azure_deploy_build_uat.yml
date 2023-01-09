@@ -2,7 +2,7 @@ name: Build image deploy cluster uat
 
 on:
   pull_request:
-  branches: ["main"]
+    branches: ["main"]
 
 env:
   AZURE_CONTAINER_REGISTRY: "FilRougeRegistryUat"

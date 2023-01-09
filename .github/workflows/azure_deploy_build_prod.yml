@@ -2,7 +2,7 @@ name: Build image deploy cluster prod
 
 on:
   pull_request:
-  branches: ["main"]
+    branches: ["main"]
   tags:
     - "v**"
 
