@@ -1,4 +1,4 @@
-name: Build and deploy a docker image to azure image registery uat
+name: Build image deploy cluster uat
 
 on:
   pull_request:
