@@ -1,5 +1,6 @@
 # fil_rouge_app
-## Deploying Python Application using Docker and Kubernetes       
+
+## Deploying Python Application using Docker, Kubernetes, Terraform and Azure      
 
 I've learning how to deploy one Python application to Kubernetes. Here you can see my notes:
 
@@ -294,12 +295,4 @@ And that's all. I can delete all application alos
 
 > kubectl delete -f .k8s/ 
 
-# jira pour le backlog
-# ajouter slack pour les notifications
-# Terraform , infra the code , comme les fichier yaml , un fichier main.tf pour les ressources 
-# un fichier variables , un fichier test deploiement 
-# git pour le versionning 
-# github workflows pour les pipelines (build)
-# conteneuriser l'application avec docker 
-# kubernetes déploiement de l'application avec cloud azure 
 
