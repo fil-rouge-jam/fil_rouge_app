@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: FilRougeRegistryDev.azurecr.io:develop 
+          image: FilRougeRegistryDev.azurecr.io/fil_rouge:develop 
           ports:
             - containerPort: 5000
           env:
