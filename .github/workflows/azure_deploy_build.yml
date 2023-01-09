@@ -1,7 +1,7 @@
 name: build image and deploy to cluster dev
 
 on:
-  merge:
+  pull_request:
   branches: ["develop"]
 
 env:
