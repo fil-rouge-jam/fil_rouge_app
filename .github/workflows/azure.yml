@@ -2,7 +2,7 @@ name: build image and deploy to cluster dev
 
 on:
   pull_request:
-  branches: ["develop"]
+    branches: ["develop"]
 
 env:
   AZURE_CONTAINER_REGISTRY: "FilRougeRegistryDev"
