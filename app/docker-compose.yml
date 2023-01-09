@@ -2,7 +2,7 @@ version: '2'
 
 services:
   front:
-    image: filrougeregistry.azurecr.io:develop
+    image: FilRougeRegistryDev.azurecr.io/fil_rouge:develop
     build:
       context: .
       dockerfile: Dockerfile
