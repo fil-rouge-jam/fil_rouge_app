@@ -9,7 +9,7 @@ env:
   CONTAINER_NAME: "fil_rouge"
   RESOURCE_GROUP: "fil_rouge_grp_dev"
   CL_RESOURCE_GROUP: "fil_rouge_grp_dev"
-  CLUSTER_NAME: "fil-rouge-aks-dev"
+  CLUSTER_NAME: "FilRougeRegistryDev"
   DEPLOYMENT_MANIFEST_PATH: ".k8s/"
 
 jobs:
