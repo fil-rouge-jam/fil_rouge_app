@@ -17,4 +17,3 @@ spec:
     - protocol: TCP
       port: 5000 # port exposed internally in the cluster
       targetPort: 5000 # the container port to send requests to
-      nodePort: 30164 # a static port assigned on each the node

@@ -11,11 +11,6 @@ spec:
       # This must match the labels we set on the pod!
       app: api
 
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 0
-      maxSurge: 1
   # This template field is a regular pod configuration
   # nested inside the deployment spec
   template:
@@ -27,7 +22,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: filrougeregistry.azurecr.io:develop 
+          image: filrougeregistrydev.azurecr.io/fil_rouge:develop 
           ports:
             - containerPort: 5000
           env:
